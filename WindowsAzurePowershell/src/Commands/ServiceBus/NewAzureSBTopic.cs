@@ -27,19 +27,12 @@ namespace Microsoft.WindowsAzure.Commands.ServiceBus
     [Cmdlet(VerbsCommon.New, "AzureSBTopic"), OutputType(typeof(TopicDescription))]
     public class NewAzureSBTopic : CmdletWithSubscriptionBase
     {
-        public const string EntitySASParameterSet = "EntitySAS";
-        public const string NamespaceSASParameterSet = "NamespaceSAS";
-
         internal ServiceBusClientExtensions Client { get; set; }
 
-        [Parameter(Position = 0, Mandatory = true, ParameterSetName = EntitySASParameterSet, ValueFromPipelineByPropertyName = true, HelpMessage = "The topic name")]
-        [Parameter(Position = 0, Mandatory = true, ParameterSetName = NamespaceSASParameterSet, ValueFromPipelineByPropertyName = true, HelpMessage = "The topic name")]
+        [Parameter(Position = 0, Mandatory = true, ValueFromPipelineByPropertyName = true, HelpMessage = "The topic name")]
         public string Name { get; set; }
 
-        [Parameter(Position = 1, Mandatory = true, ValueFromPipelineByPropertyName = true,
-        ParameterSetName = EntitySASParameterSet, HelpMessage = "The namespace name")]
-        [Parameter(Position = 1, Mandatory = true, ValueFromPipelineByPropertyName = true,
-        ParameterSetName = NamespaceSASParameterSet, HelpMessage = "The namespace name")]
+        [Parameter(Position = 1, Mandatory = true, ValueFromPipelineByPropertyName = true, HelpMessage = "The namespace name")]
         public string Namespace { get; set; }
 
         [Parameter(Mandatory = false, HelpMessage = "Message time to live. defaults to 30 days")]

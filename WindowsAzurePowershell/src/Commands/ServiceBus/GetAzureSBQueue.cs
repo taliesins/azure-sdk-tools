@@ -27,17 +27,12 @@ namespace Microsoft.WindowsAzure.Commands.ServiceBus
     [Cmdlet(VerbsCommon.Get, "AzureSBQueue"), OutputType(typeof(List<QueueDescription>), typeof(QueueDescription))]
     public class GetAzureSBQueue : CmdletWithSubscriptionBase
     {
-        public const string EntitySASParameterSet = "EntitySAS";
-        public const string NamespaceSASParameterSet = "NamespaceSAS";
-
         internal ServiceBusClientExtensions Client { get; set; }
 
-        [Parameter(Position = 0, Mandatory = true, ParameterSetName = EntitySASParameterSet, ValueFromPipelineByPropertyName = true, HelpMessage = "The queue name")]
-        [Parameter(Position = 0, Mandatory = true, ParameterSetName = NamespaceSASParameterSet, ValueFromPipelineByPropertyName = true, HelpMessage = "The queue name")]
+        [Parameter(Position = 0, Mandatory = true, ValueFromPipelineByPropertyName = true, HelpMessage = "The queue name")]
         public string Name { get; set; }
 
-        [Parameter(Position = 1, Mandatory = true, ValueFromPipelineByPropertyName = true, ParameterSetName = EntitySASParameterSet, HelpMessage = "The namespace name")]
-        [Parameter(Position = 1, Mandatory = true, ValueFromPipelineByPropertyName = true, ParameterSetName = NamespaceSASParameterSet, HelpMessage = "The namespace name")]
+        [Parameter(Position = 1, Mandatory = true, ValueFromPipelineByPropertyName = true, HelpMessage = "The namespace name")]
         public string Namespace { get; set; }
 
         /// <summary>
