@@ -174,7 +174,7 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.Common
             {
                 return Channel;
             }
-            
+
             return ChannelHelper.CreateServiceManagementChannel<T>(
                 ServiceBinding,
                 new Uri(ServiceEndpoint),

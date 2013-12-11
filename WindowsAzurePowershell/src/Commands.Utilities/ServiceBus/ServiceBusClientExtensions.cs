@@ -16,17 +16,12 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.ServiceBus
 {
     using System;
     using System.Collections.Generic;
-    using System.Net.Http;
-    using System.Text;
     using Commands.Utilities.Common;
     using Microsoft.ServiceBus;
-    using Microsoft.ServiceBus.Management;
     using Microsoft.ServiceBus.Messaging;
     using Microsoft.ServiceBus.Notifications;
     using Microsoft.WindowsAzure.Commands.Utilities.Properties;
-    using Microsoft.WindowsAzure.ServiceManagement;
     using System.Linq;
-    using System.Threading.Tasks;
     using AuthorizationRule = Microsoft.ServiceBus.Messaging.AuthorizationRule;
     using System.Diagnostics;
     using Microsoft.WindowsAzure.Management.ServiceBus;
@@ -284,7 +279,6 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.ServiceBus
         /// </summary>
         public ServiceBusClientExtensions()
         {
-
         }
 
         /// <summary>
@@ -296,6 +290,7 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.ServiceBus
         {
             subscriptionId = subscription.SubscriptionId;
             Subscription = subscription;
+            
             ServiceBusClient = Subscription.CreateClient<ServiceBusManagementClient>();
         }
 
@@ -514,34 +509,67 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.ServiceBus
         /// Creates new service bus queue in the given name.
         /// </summary>
         /// <param name="namespaceName">The namespace name</param>
-        /// <param name="name">The queue name</param>
+        /// <param name="path">The queue name</param>
         /// <returns>The queue description object</returns>
-        public virtual QueueDescription CreateQueue(string namespaceName, string name)
+        public virtual QueueDescription CreateQueue(string namespaceName, string path)
         {
-            return CreateNamespaceManager(namespaceName).CreateQueue(name);
+            return CreateNamespaceManager(namespaceName).CreateQueue(path);
+        }
+
+        /// <summary>
+        /// Creates new service bus queue in the given name.
+        /// </summary>
+        /// <param name="namespaceName">The namespace name</param>
+        /// <param name="queue">Queue to create</param>
+        /// <returns>The queue description object</returns>
+        public virtual QueueDescription CreateQueue(string namespaceName, QueueDescription queue)
+        {
+            return CreateNamespaceManager(namespaceName).CreateQueue(queue);
         }
 
         /// <summary>
         /// Creates new service bus topic in the given name.
         /// </summary>
         /// <param name="namespaceName">The namespace name</param>
-        /// <param name="name">The topic name</param>
+        /// <param name="path">The topic name</param>
         /// <returns>The topic description object</returns>
-        public virtual TopicDescription CreateTopic(string namespaceName, string name)
+        public virtual TopicDescription CreateTopic(string namespaceName, string path)
         {
-            return CreateNamespaceManager(namespaceName).CreateTopic(name);
+            return CreateNamespaceManager(namespaceName).CreateTopic(path);
+        }
+
+        /// <summary>
+        /// Creates new service bus topic in the given name.
+        /// </summary>
+        /// <param name="namespaceName">The namespace name</param>
+        /// <param name="topic">The topic</param>
+        /// <returns>The topic description object</returns>
+        public virtual TopicDescription CreateTopic(string namespaceName, TopicDescription topic)
+        {
+            return CreateNamespaceManager(namespaceName).CreateTopic(topic);
         }
 
         /// <summary>
         /// Creates new service bus relay in the given name.
         /// </summary>
         /// <param name="namespaceName">The namespace name</param>
-        /// <param name="name">The relay name</param>
+        /// <param name="path">The relay name</param>
         /// <param name="type">The relay type</param>
         /// <returns>The relay description object</returns>
-        public virtual RelayDescription CreateRelay(string namespaceName, string name, RelayType type)
+        public virtual RelayDescription CreateRelay(string namespaceName, string path, RelayType type)
         {
-            return CreateNamespaceManager(namespaceName).CreateRelayAsync(name, type).Result;
+            return CreateNamespaceManager(namespaceName).CreateRelayAsync(path, type).Result;
+        }
+
+        /// <summary>
+        /// Creates new service bus relay in the given name.
+        /// </summary>
+        /// <param name="namespaceName">The namespace name</param>
+        /// <param name="relay">The relay</param>
+        /// <returns>The relay description object</returns>
+        public virtual RelayDescription CreateRelay(string namespaceName, RelayDescription relay)
+        {
+            return CreateNamespaceManager(namespaceName).CreateRelayAsync(relay).Result;
         }
 
         /// <summary>
@@ -554,6 +582,17 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.ServiceBus
         {
             NotificationHubDescription description = new NotificationHubDescription(name);
             return CreateNamespaceManager(namespaceName).CreateNotificationHub(description);
+        }
+
+        /// <summary>
+        /// Creates new service bus notification hub in the given name.
+        /// </summary>
+        /// <param name="namespaceName">The namespace name</param>
+        /// <param name="notificationHub">The notification hub</param>
+        /// <returns>The notification hub description object</returns>
+        public virtual NotificationHubDescription CreateNotificationHub(string namespaceName, NotificationHubDescription notificationHub)
+        {
+            return CreateNamespaceManager(namespaceName).CreateNotificationHub(notificationHub);
         }
 
         /// <summary>
@@ -775,6 +814,64 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.ServiceBus
             }
         }
 
+        public virtual bool RemoveQueue(string namespaceName, string path)
+        {
+            var namespaceManager = this.CreateNamespaceManager(namespaceName);
+            if (namespaceManager.QueueExists(path))
+            {
+                return false;
+            }
+
+            namespaceManager.DeleteQueue(path);
+
+            return true;
+        }
+
+        public virtual bool RemoveTopic(string namespaceName, string path)
+        {
+            var namespaceManager = this.CreateNamespaceManager(namespaceName);
+            if (namespaceManager.TopicExists(path))
+            {
+                return false;
+            }
+
+            namespaceManager.DeleteTopic(path);
+
+            return true;
+        }
+
+        public virtual bool RemoveRelay(string namespaceName, string path)
+        {
+            var namespaceManager = this.CreateNamespaceManager(namespaceName);
+            if (namespaceManager.RelayExistsAsync(path).Result)
+            {
+                return false;
+            }
+
+            namespaceManager.DeleteRelayAsync(path).Wait();
+
+            return true;
+        }
+
+        public virtual bool RemoveNotificationHub(string namespaceName, string path)
+        {
+            var namespaceManager = this.CreateNamespaceManager(namespaceName);
+            if (namespaceManager.NotificationHubExists(path))
+            {
+                return false;
+            }
+
+            namespaceManager.DeleteNotificationHub(path);
+            return true;
+        }
+
+        public virtual bool RemoveNamespace(string name)
+        {
+            ServiceBusClient.Namespaces.Delete(name);
+
+            return true;
+        }
+
         /// <summary>
         /// Gets authorization rules based on the passed filter options.
         /// </summary>
@@ -852,6 +949,42 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.ServiceBus
                 .ToList();
         }
 
+        public virtual List<QueueDescription> GetQueue(string namespaceName)
+        {
+            var namespaceManager = this.CreateNamespaceManager(namespaceName);
+            return namespaceManager.GetQueues().ToList();
+        }
+
+        public virtual QueueDescription GetQueue(string namespaceName, string path)
+        {
+            var namespaceManager = this.CreateNamespaceManager(namespaceName);
+            return namespaceManager.GetQueue(path);
+        }
+
+        public virtual List<RelayDescription> GetRelay(string namespaceName)
+        {
+            var namespaceManager = this.CreateNamespaceManager(namespaceName);
+            return  namespaceManager.GetRelaysAsync().Result.ToList();
+        }
+
+        public virtual RelayDescription GetRelay(string namespaceName, string path)
+        {
+            var namespaceManager = this.CreateNamespaceManager(namespaceName);
+            return namespaceManager.GetRelayAsync(path).Result;
+        }
+
+        public virtual List<NotificationHubDescription> GetNotificationHub(string namespaceName)
+        {
+            var namespaceManager = this.CreateNamespaceManager(namespaceName);
+            return namespaceManager.GetNotificationHubs().ToList();
+        }
+
+        public virtual NotificationHubDescription GetNotificationHub(string namespaceName, string path)
+        {
+            var namespaceManager = this.CreateNamespaceManager(namespaceName);
+            return namespaceManager.GetNotificationHub(path);
+        }
+
         public virtual bool IsAvailableNamespace(string name)
         {
             return ServiceBusClient.Namespaces.CheckAvailability(name).IsAvailable;
@@ -885,13 +1018,6 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.ServiceBus
             }
 
             return GetExtendedServiceBusNamespace(name);
-        }
-
-        public virtual bool RemoveNamespace(string name)
-        {
-            ServiceBusClient.Namespaces.Delete(name);
-
-            return true;
         }
     }
 

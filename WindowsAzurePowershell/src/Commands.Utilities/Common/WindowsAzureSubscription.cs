@@ -25,7 +25,6 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.Common
     using Management.Storage;
     using Storage;
     using Storage.Auth;
-    using Subscriptions;
     using WindowsAzure.Common;
     using Properties;
 
@@ -34,6 +33,10 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.Common
     /// </summary>
     public class WindowsAzureSubscription
     {
+        public WindowsAzureSubscription()
+        {
+            ServiceEndpoint = new Uri(ConfigurationConstants.ServiceManagementEndpoint);
+        }
         public string SubscriptionName { get; set; }
         public string SubscriptionId { get; set; }
         public Uri ServiceEndpoint { get; set; }
@@ -44,14 +47,14 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.Common
         public bool IsDefault { get; set; }
         public X509Certificate2 Certificate { get; set; }
 
-        private string currentStorageAccountName;
-        private CloudStorageAccount cloudStorageAccount;
+        private string _currentStorageAccountName;
+        private CloudStorageAccount _cloudStorageAccount;
 
-        private readonly List<string> registeredResourceProviders = new List<string>();
+        private readonly List<string> _registeredResourceProviders = new List<string>();
 
         internal List<string> RegisteredResourceProviders
         {
-            get { return registeredResourceProviders; }
+            get { return _registeredResourceProviders; }
         }
 
         /// <summary>
@@ -62,20 +65,20 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.Common
 
         public string CurrentStorageAccountName
         {
-            get { return currentStorageAccountName; }
+            get { return _currentStorageAccountName; }
             set
             {
-                if (currentStorageAccountName != value)
+                if (_currentStorageAccountName != value)
                 {
-                    currentStorageAccountName = value;
-                    cloudStorageAccount = null;
+                    _currentStorageAccountName = value;
+                    _cloudStorageAccount = null;
                 }
             }
         }
 
         public CloudStorageAccount CurrentCloudStorageAccount
         {
-            get { return cloudStorageAccount; }
+            get { return _cloudStorageAccount; }
         }
 
         // Access token / account name for Active Directory
@@ -151,6 +154,8 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.Common
             SubscriptionName = newSubscription.SubscriptionName;
         }
 
+
+
         /// <summary>
         /// Create a service management client for this subscription,
         /// with appropriate credentials supplied.
@@ -182,21 +187,21 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.Common
 
         public CloudStorageAccount GetCloudStorageAccount()
         {
-            if (cloudStorageAccount == null)
+            if (_cloudStorageAccount == null)
             {
                 using (var storageClient = CreateClient<StorageManagementClient>())
                 {
                     var storageServiceResponse = storageClient.StorageAccounts.Get(CurrentStorageAccountName);
                     var storageKeysResponse = storageClient.StorageAccounts.GetKeys(CurrentStorageAccountName);
 
-                    cloudStorageAccount = new CloudStorageAccount(
+                    _cloudStorageAccount = new CloudStorageAccount(
                         new StorageCredentials(storageServiceResponse.ServiceName, storageKeysResponse.PrimaryKey),
                         General.CreateHttpsEndpoint(storageServiceResponse.Properties.Endpoints[0].ToString()),
                         General.CreateHttpsEndpoint(storageServiceResponse.Properties.Endpoints[1].ToString()),
                         General.CreateHttpsEndpoint(storageServiceResponse.Properties.Endpoints[2].ToString()));
                 }
             }
-            return cloudStorageAccount;
+            return _cloudStorageAccount;
         }
 
         private void RegisterRequiredResourceProviders<T>(SubscriptionCloudCredentials credentials) where T : ServiceClient<T>
