@@ -28,10 +28,8 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Common;
 using Microsoft.WindowsAzure.Common.Internals;
-using Microsoft.WindowsAzure.Subscriptions;
 using Microsoft.WindowsAzure.Subscriptions.Models;
 
 namespace Microsoft.WindowsAzure.Subscriptions.Models
