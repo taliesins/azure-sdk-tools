@@ -154,8 +154,6 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.Common
             SubscriptionName = newSubscription.SubscriptionName;
         }
 
-
-
         /// <summary>
         /// Create a service management client for this subscription,
         /// with appropriate credentials supplied.

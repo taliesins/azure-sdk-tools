@@ -14,13 +14,10 @@
 //
 
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using Microsoft.WindowsAzure.Common;
 using Microsoft.WindowsAzure.Common.Internals;
-using System.IO;
-using System.Xml;
 using System.Xml.Linq;
 using Newtonsoft.Json.Linq;
 

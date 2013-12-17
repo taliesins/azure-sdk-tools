@@ -199,6 +199,15 @@ namespace Microsoft.WindowsAzure.Commands.ServiceManagement
             Mapper.CreateMap<OperationStatusResponse, CertificateContext>()
                   .ForMember(c => c.OperationId, o => o.MapFrom(r => r.Id))
                   .ForMember(c => c.OperationStatus, o => o.MapFrom(r => r.Status.ToString()));
+
+            Mapper.CreateMap<ManagementCertificateGetResponse, ManagementCertificateContext>()
+                  .ForMember(c => c.Data, o => o.MapFrom(r => r.Data != null ? Convert.ToBase64String(r.Data) : null));
+            Mapper.CreateMap<ManagementCertificateListResponse.SubscriptionCertificate, ManagementCertificateContext>()
+                  .ForMember(c => c.Data, o => o.MapFrom(r => r.Data != null ? Convert.ToBase64String(r.Data) : null));
+            Mapper.CreateMap<OperationStatusResponse, ManagementCertificateContext>()
+                  .ForMember(c => c.OperationId, o => o.MapFrom(r => r.Id))
+                  .ForMember(c => c.OperationStatus, o => o.MapFrom(r => r.Status.ToString()));
+
             Mapper.CreateMap<ComputeOperationStatusResponse, ManagementOperationContext>()
                   .ForMember(c => c.OperationId, o => o.MapFrom(r => r.Id))
                   .ForMember(c => c.OperationStatus, o => o.MapFrom(r => r.Status.ToString()));

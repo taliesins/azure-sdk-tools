@@ -71,7 +71,7 @@ namespace Microsoft.WindowsAzure.Commands.ServiceManagement.Certificates
                     ThumbprintAlgorithm =  ThumbprintAlgorithm
                 };
                 ExecuteClientActionNewSM(
-                    null,
+                    "Get azure hosted service certificate",
                     CommandRuntime.ToString(),
                     () => this.ComputeClient.ServiceCertificates.Get(parameters),
                     (s, response) => new int[1].Select(i => ContextFactory<ServiceCertificateGetResponse, CertificateContext>(response, s)));
@@ -79,7 +79,7 @@ namespace Microsoft.WindowsAzure.Commands.ServiceManagement.Certificates
             else
             {
                 ExecuteClientActionNewSM(
-                    null,
+                    "Get azure hosted service certificates",
                     CommandRuntime.ToString(),
                     () => this.ComputeClient.ServiceCertificates.List(this.ServiceName),
                     (s, response) => response.Certificates.Select(c =>

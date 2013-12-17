@@ -12,31 +12,23 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------------
 
+using System.Threading;
+using Microsoft.WindowsAzure.Management.Models;
+
 namespace Microsoft.WindowsAzure.Commands.ServiceManagement.Certificates
 {
     using System.Management.Automation;
     using System.Security.Cryptography.X509Certificates;
     using System.Security.Permissions;
-    using Helpers;
-    using Management.Compute;
-    using Management.Compute.Models;
     using Utilities.Common;
 
     /// <summary>
     /// Upload a service certificate for the specified hosted service.
     /// </summary>
-    [Cmdlet(VerbsCommon.Add, "AzureCertificate"), OutputType(typeof(ManagementOperationContext))]
-    public class AddAzureCertificate : ServiceManagementBaseCmdlet
+    [Cmdlet(VerbsCommon.Add, "AzureManagementCertificate"), OutputType(typeof(ManagementOperationContext))]
+    public class AddAzureManagementCertificate : ServiceManagementBaseCmdlet
     {
-        [Parameter(Position = 0, Mandatory = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Hosted Service Name.")]
-        [ValidateNotNullOrEmpty]
-        public string ServiceName
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Position = 1, Mandatory = true, HelpMessage = "Certificate to deploy.")]
+        [Parameter(Position = 0, Mandatory = true, HelpMessage = "Certificate to deploy.")]
         [ValidateNotNullOrEmpty]
         public object CertToDeploy
         {
@@ -55,18 +47,18 @@ namespace Microsoft.WindowsAzure.Commands.ServiceManagement.Certificates
         {
             Password = Password ?? string.Empty;
 
-            var certData = GetCertificateData();
+            var certificate = GetCertificate();
 
-            var parameters = new ServiceCertificateCreateParameters
+            var parameters = new ManagementCertificateCreateParameters
             {
-                Data = certData,
-                Password = Password,
-                CertificateFormat = CertificateFormat.Pfx
+                PublicKey = certificate.GetPublicKey(),
+                Thumbprint = certificate.Thumbprint,
+                Data = certificate.RawData
             };
             ExecuteClientActionNewSM(
-                "Add azure hosted service certificate",
+                "Add azure management certificate", 
                 CommandRuntime.ToString(),
-                () => this.ComputeClient.ServiceCertificates.Create(this.ServiceName, parameters));
+                () => this.ManagementClient.ManagementCertificates.CreateAsync(parameters, new CancellationToken()).Result);
         }
 
         [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
@@ -76,21 +68,23 @@ namespace Microsoft.WindowsAzure.Commands.ServiceManagement.Certificates
             this.ExecuteCommand();
         }
 
-        private byte[] GetCertificateData()
+        private X509Certificate2 GetCertificate()
         {
             if ((CertToDeploy is PSObject) && ((PSObject)CertToDeploy).ImmediateBaseObject is X509Certificate2)
             {
                 var cert = ((PSObject)CertToDeploy).ImmediateBaseObject as X509Certificate2;
-                return CertUtilsNewSM.GetCertificateData(cert);
+                return cert;
             }
             else if (CertToDeploy is X509Certificate2)
             {
-                return CertUtilsNewSM.GetCertificateData(CertToDeploy as X509Certificate2);
+                return CertToDeploy as X509Certificate2;
             }
             else
             {
                 var certPath = this.ResolvePath(CertToDeploy.ToString());
-                return CertUtilsNewSM.GetCertificateData(certPath, Password);
+                var cert = new X509Certificate2();
+                cert.Import(certPath, Password, X509KeyStorageFlags.Exportable);
+                return cert;
             }
         }
     }

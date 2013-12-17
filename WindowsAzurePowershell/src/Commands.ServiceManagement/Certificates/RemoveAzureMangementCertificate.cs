@@ -12,36 +12,20 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------------
 
+using System.Threading;
+
 namespace Microsoft.WindowsAzure.Commands.ServiceManagement.Certificates
 {
     using System.Management.Automation;
-    using Management.Compute;
-    using Management.Compute.Models;
     using Utilities.Common;
 
     /// <summary>
     /// Deletes the specified certificate.
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "AzureCertificate"), OutputType(typeof(ManagementOperationContext))]
-    public class RemoveAzureCertificate : ServiceManagementBaseCmdlet
+    [Cmdlet(VerbsCommon.Remove, "AzureManagementCertificate"), OutputType(typeof(ManagementOperationContext))]
+    public class RemoveAzureMangementCertificate : ServiceManagementBaseCmdlet
     {
-        [Parameter(Position = 0, Mandatory = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Hosted Service Name.")]
-        [ValidateNotNullOrEmpty]
-        public string ServiceName
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Position = 1, Mandatory = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Certificate thumbprint algorithm.")]
-        [ValidateNotNullOrEmpty]
-        public string ThumbprintAlgorithm
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Position = 2, Mandatory = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Certificate thumbprint.")]
+        [Parameter(Position = 0, Mandatory = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Certificate thumbprint.")]
         [ValidateNotNullOrEmpty]
         public string Thumbprint
         {
@@ -51,16 +35,10 @@ namespace Microsoft.WindowsAzure.Commands.ServiceManagement.Certificates
 
         internal void ExecuteCommand()
         {
-            var parameters = new ServiceCertificateDeleteParameters
-            {
-                ServiceName = ServiceName,
-                Thumbprint = Thumbprint,
-                ThumbprintAlgorithm = ThumbprintAlgorithm
-            };
             ExecuteClientActionNewSM(
-                "Remove azure hosted service certificate",
+                "Remove azure management certificate",
                 CommandRuntime.ToString(),
-                () => this.ComputeClient.ServiceCertificates.Delete(parameters));
+                () => this.ManagementClient.ManagementCertificates.DeleteAsync(Thumbprint, new CancellationToken()).Result);
         }
 
         protected override void OnProcessRecord()
