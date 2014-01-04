@@ -64,7 +64,7 @@ namespace Microsoft.WindowsAzure.Commands.ServiceManagement.Certificates
                 CertificateFormat = CertificateFormat.Pfx
             };
             ExecuteClientActionNewSM(
-                null, 
+                "Add azure hosted service certificate", 
                 CommandRuntime.ToString(),
                 () => this.ComputeClient.ServiceCertificates.Create(this.ServiceName, parameters));
         }

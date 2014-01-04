@@ -58,7 +58,7 @@ namespace Microsoft.WindowsAzure.Commands.ServiceManagement.Certificates
                 ThumbprintAlgorithm = ThumbprintAlgorithm
             };
             ExecuteClientActionNewSM(
-                null,
+                "Remove azure hosted service certificate",
                 CommandRuntime.ToString(),
                 () => this.ComputeClient.ServiceCertificates.Delete(parameters));
         }
