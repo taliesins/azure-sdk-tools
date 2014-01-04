@@ -16,16 +16,14 @@ namespace Microsoft.WindowsAzure.Commands.SqlDatabase
 {
     using System;
     using System.Globalization;
-    using System.Management.Automation;
     using Microsoft.WindowsAzure.Commands.SqlDatabase.Services.Common;
-    using Microsoft.WindowsAzure.Commands.Utilities;
     using Microsoft.WindowsAzure.Commands.Utilities.Common;
     using Microsoft.WindowsAzure.Management.Sql;
 
     /// <summary>
     /// The base class for all Windows Azure Sql Database Management Cmdlets
     /// </summary>
-    public abstract class SqlDatabaseCmdletBase : PSCmdlet
+    public abstract class SqlDatabaseCmdletBase : CmdletWithSubscriptionBase
     {
         /// <summary>
         /// Stores the session Id for all the request made in this session.
@@ -55,11 +53,11 @@ namespace Microsoft.WindowsAzure.Commands.SqlDatabase
         /// Retrieve the SQL Management client for the currently selected subscription.
         /// </summary>
         /// <returns>The SQL Management client for the currently selected subscription.</returns>
-        public static SqlManagementClient GetCurrentSqlClient()
+        public SqlManagementClient GetCurrentSqlClient()
         {
             // Get the SQL management client for the current subscription
-            WindowsAzureSubscription subscription = WindowsAzureProfile.Instance.CurrentSubscription;
-            SqlDatabaseCmdletBase.ValidateSubscription(subscription);
+            WindowsAzureSubscription subscription = this.CurrentSubscription;
+            ValidateSubscription(subscription);
             return subscription.CreateClient<SqlManagementClient>();
         }
 
