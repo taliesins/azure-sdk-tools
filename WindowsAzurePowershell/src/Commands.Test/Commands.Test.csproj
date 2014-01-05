@@ -287,8 +287,16 @@
     <Compile Include="MediaServices\NewAzureMediaServicesKeyTest.cs" />
     <Compile Include="MediaServices\NewMediaServicesAccountTests.cs" />
     <Compile Include="MediaServices\RemoveMediaServicesAccountTests.cs" />
+    <Compile Include="ServiceBus\RemoveAzureSBTopicTest.cs" />
+    <Compile Include="ServiceBus\RemoveAzureSBRelayTest.cs" />
+    <Compile Include="ServiceBus\RemoveAzureSBQueueTest.cs" />
+    <Compile Include="ServiceBus\RemoveAzureSBNotificationHubTest.cs" />
+    <Compile Include="ServiceBus\GetAzureSBTopicTests.cs" />
+    <Compile Include="ServiceBus\GetAzureSBRelayTests.cs" />
+    <Compile Include="ServiceBus\GetAzureSBQueueTests.cs" />
     <Compile Include="ServiceBus\GetAzureSBLocationTest.cs" />
     <Compile Include="ServiceBus\GetAzureSBNamespaceTest.cs" />
+    <Compile Include="ServiceBus\GetAzureSBNotificationHubTests.cs" />
     <Compile Include="ServiceBus\NewAzureSBNamespaceTest.cs" />
     <Compile Include="ServiceBus\RemoveAzureSBNamespaceTest.cs" />
     <Compile Include="Store\GetAzureStoreAddOnTest.cs" />
