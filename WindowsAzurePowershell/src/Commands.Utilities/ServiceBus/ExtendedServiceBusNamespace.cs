@@ -14,6 +14,7 @@
 
 namespace Microsoft.WindowsAzure.Commands.Utilities.ServiceBus
 {
+    using System.Text.RegularExpressions;
     using Microsoft.WindowsAzure.Management.ServiceBus.Models;
     using System;
     using System.Collections.Generic;
@@ -21,6 +22,8 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.ServiceBus
 
     public class ExtendedServiceBusNamespace
     {
+        private static readonly Regex ConnectionStringRegex = new Regex(@"Endpoint=(.*);SharedSecretIssuer=(.*);SharedSecretValue=(.*)");
+      
         public ExtendedServiceBusNamespace()
         {
 
@@ -45,8 +48,12 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.ServiceBus
             if (descriptions != null && descriptions.Count != 0)
             {
                 NamespaceDescription desc = descriptions.FirstOrDefault();
-                DefaultKey = desc.KeyName;
+
                 ConnectionString = desc.ConnectionString;
+
+                var connectionStringMatch = ConnectionStringRegex.Match(ConnectionString);
+                DefaultKey = connectionStringMatch.Groups[3].Value;
+                DefaultIssuer = connectionStringMatch.Groups[2].Value;
             }
             else
             {
@@ -59,6 +66,8 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.ServiceBus
         public string Name { get; set; }
 
         public string Region { get; set; }
+
+        public string DefaultIssuer { get; set; }
 
         public string DefaultKey { get; set; }
 
