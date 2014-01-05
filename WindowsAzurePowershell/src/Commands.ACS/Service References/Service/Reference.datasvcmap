@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="38fc6c03-fa56-45d0-98e7-e84cd235148e" xmlns="urn:schemas-microsoft-com:xml-dataservicemap">
+  <MetadataSources>
+    <MetadataSource Address="https://ecsnamespace.accesscontrol.windows.net/v2/mgmt/service" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service1.edmx" MetadataType="Edmx" ID="92fd82dd-f3dd-4244-83f4-a01f8ba712b7" SourceId="1" SourceUrl="https://ecsnamespace.accesscontrol.windows.net/v2/mgmt/service" />
+  </Metadata>
+  <Extensions />
+  <Parameters />
+</ReferenceGroup>
