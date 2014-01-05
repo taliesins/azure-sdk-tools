@@ -12,6 +12,8 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------------
 
+using System.Management.Automation;
+
 namespace Microsoft.WindowsAzure.Commands.Utilities.Common
 {
     using System;
@@ -44,6 +46,7 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.Common
 
         private WindowsAzureSubscription currentSubscription;
 
+        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = false, HelpMessage = "Current Subscription")]
         public WindowsAzureSubscription CurrentSubscription
         {
             get { return ThrowIfNull(currentSubscription ?? Profile.CurrentSubscription); }

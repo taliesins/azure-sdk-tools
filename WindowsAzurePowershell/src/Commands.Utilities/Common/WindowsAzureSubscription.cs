@@ -34,6 +34,11 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.Common
     /// </summary>
     public class WindowsAzureSubscription
     {
+        public WindowsAzureSubscription()
+        {
+            ServiceEndpoint = new Uri(ConfigurationConstants.ServiceManagementEndpoint);
+        }
+
         public string SubscriptionName { get; set; }
         public string SubscriptionId { get; set; }
         public Uri ServiceEndpoint { get; set; }
