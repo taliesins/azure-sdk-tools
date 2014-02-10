@@ -12,6 +12,8 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------------
 
+using Microsoft.WindowsAzure.Storage.DataMovement;
+
 namespace Microsoft.WindowsAzure.Commands.Storage.Blob.Cmdlet
 {
     using System;
@@ -20,7 +22,6 @@ namespace Microsoft.WindowsAzure.Commands.Storage.Blob.Cmdlet
     using Common;
     using Microsoft.WindowsAzure.Storage;
     using Microsoft.WindowsAzure.Storage.Blob;
-    using Microsoft.WindowsAzure.Storage.DataMovement;
     using Model.Contract;
     using Model.ResourceModel;
 
@@ -271,9 +272,10 @@ namespace Microsoft.WindowsAzure.Commands.Storage.Blob.Cmdlet
         /// <summary>
         /// Start copy operation by source uri
         /// </summary>
-        /// <param name="srcICloudBlob">Source uri</param>
+        /// <param name="srcUri">Source uri</param>
         /// <param name="destContainer">Destinaion container name</param>
         /// <param name="destBlobName">Destination blob name</param>
+        /// <param name="context"></param>
         /// <returns>Destination ICloudBlob object</returns>
         private ICloudBlob StartCopyBlob(string srcUri, string destContainer, string destBlobName, AzureStorageContext context)
         {

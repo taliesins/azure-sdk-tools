@@ -12,6 +12,8 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------------
 
+using Microsoft.WindowsAzure.Storage.DataMovement;
+
 namespace Microsoft.WindowsAzure.Commands.Storage.Blob
 {
     using System;
@@ -23,7 +25,6 @@ namespace Microsoft.WindowsAzure.Commands.Storage.Blob
     using Common;
     using Microsoft.WindowsAzure.Storage;
     using Microsoft.WindowsAzure.Storage.Blob;
-    using Microsoft.WindowsAzure.Storage.DataMovement;
     using Model.Contract;
     using Model.ResourceModel;
 

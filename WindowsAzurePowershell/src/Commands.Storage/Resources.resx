@@ -597,4 +597,58 @@ Failed: {2}.</value>
     <value>The minimum value of retention days 1, the largest value is 365 (one year). Current is {0}.</value>
     <comment>0 for the user specified retention day</comment>
   </data>
+  <data name="BlobTransferCancelledException" xml:space="preserve">
+    <value>The blob transfer has been cancelled.</value>
+  </data>
+  <data name="ConcurrentCountNotPositiveException" xml:space="preserve">
+    <value>Concurrent thread count must be positive.</value>
+  </data>
+  <data name="SmallMemoryCacheSizeLimitationException" xml:space="preserve">
+    <value>MaximumCacheSize cannot be less than {0}.</value>
+  </data>
+  <data name="ReadableSizeFormatBytes" xml:space="preserve">
+    <value>{0:0.##} bytes</value>
+  </data>
+  <data name="ReadableSizeFormatExaBytes" xml:space="preserve">
+    <value>{0:0.##}EB</value>
+  </data>
+  <data name="ReadableSizeFormatGigaBytes" xml:space="preserve">
+    <value>{0:0.##}GB</value>
+  </data>
+  <data name="ReadableSizeFormatKiloBytes" xml:space="preserve">
+    <value>{0:0.##}KB</value>
+  </data>
+  <data name="ReadableSizeFormatMegaBytes" xml:space="preserve">
+    <value>{0:0.##}MB</value>
+  </data>
+  <data name="ReadableSizeFormatPetaBytes" xml:space="preserve">
+    <value>{0:0.##}PB</value>
+  </data>
+  <data name="ReadableSizeFormatTeraBytes" xml:space="preserve">
+    <value>{0:0.##}TB</value>
+  </data>
+  <data name="BlockSizeOutOfRangeException" xml:space="preserve">
+    <value>BlockSize must be between {0} and {1}.</value>
+  </data>
+  <data name="BufferNotAllocatedThroughMemoryManagerException" xml:space="preserve">
+    <value>The passed in buffer was not allocated through the MemoryManager.</value>
+  </data>
+  <data name="UndefinedTransferEntryStatusException" xml:space="preserve">
+    <value>The given entry status {0} is undefined.</value>
+  </data>
+  <data name="TransferEntryPropertyCanBeSetOnlyOnceException" xml:space="preserve">
+    <value>Property {0} of a transfer entry can be set only once.</value>
+  </data>
+  <data name="RestartableInfoCorruptedException" xml:space="preserve">
+    <value>Failed to read restartable info from file.</value>
+  </data>
+  <data name="StorageKeyInvalidFormatException" xml:space="preserve">
+    <value>The supplied storage key ({0}) is not a valid Base64 string.</value>
+  </data>
+  <data name="CanOnlySetOneCredentialException" xml:space="preserve">
+    <value>Only one of ({0}) or ({1}) can be set.</value>
+  </data>
+  <data name="UndefinedBlobTypeException" xml:space="preserve">
+    <value>The given blob type {0} is undefined.</value>
+  </data>
 </root>

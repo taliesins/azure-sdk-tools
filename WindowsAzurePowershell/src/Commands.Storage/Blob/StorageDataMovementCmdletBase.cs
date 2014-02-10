@@ -12,13 +12,14 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------------
 
+using Microsoft.WindowsAzure.Storage.DataMovement;
+
 namespace Microsoft.WindowsAzure.Commands.Storage.Blob
 {
     using System;
     using System.Management.Automation;
     using System.Net;
     using System.Threading;
-    using Microsoft.WindowsAzure.Storage.DataMovement;
 
     public class StorageDataMovementCmdletBase : StorageCloudBlobCmdletBase, IDisposable
     {

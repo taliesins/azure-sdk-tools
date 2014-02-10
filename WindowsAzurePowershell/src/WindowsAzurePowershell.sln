@@ -66,6 +66,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commands.ServiceManagement.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commands.ACS", "Commands.ACS\Commands.ACS.csproj", "{309877C5-0AAA-4BED-BBA7-F67795B17D0F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.WindowsAzure.Storage.DataMovement", "WindowsAzure.Storage.DataMovement\Microsoft.WindowsAzure.Storage.DataMovement.csproj", "{1EDDEAD9-58C3-4A97-BF62-91FCA7910BCE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -352,6 +354,15 @@ Global
 		{309877C5-0AAA-4BED-BBA7-F67795B17D0F}.ReleaseSigned|Any CPU.ActiveCfg = Release|Any CPU
 		{309877C5-0AAA-4BED-BBA7-F67795B17D0F}.ReleaseSigned|Any CPU.Build.0 = Release|Any CPU
 		{309877C5-0AAA-4BED-BBA7-F67795B17D0F}.ReleaseSigned|x64.ActiveCfg = Release|Any CPU
+		{1EDDEAD9-58C3-4A97-BF62-91FCA7910BCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EDDEAD9-58C3-4A97-BF62-91FCA7910BCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EDDEAD9-58C3-4A97-BF62-91FCA7910BCE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1EDDEAD9-58C3-4A97-BF62-91FCA7910BCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EDDEAD9-58C3-4A97-BF62-91FCA7910BCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EDDEAD9-58C3-4A97-BF62-91FCA7910BCE}.Release|x64.ActiveCfg = Release|Any CPU
+		{1EDDEAD9-58C3-4A97-BF62-91FCA7910BCE}.ReleaseSigned|Any CPU.ActiveCfg = Release|Any CPU
+		{1EDDEAD9-58C3-4A97-BF62-91FCA7910BCE}.ReleaseSigned|Any CPU.Build.0 = Release|Any CPU
+		{1EDDEAD9-58C3-4A97-BF62-91FCA7910BCE}.ReleaseSigned|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
