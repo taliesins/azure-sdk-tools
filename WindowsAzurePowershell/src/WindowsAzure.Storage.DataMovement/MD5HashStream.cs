@@ -107,7 +107,7 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement
 			{
 				asyncResult = asyncCall();
 			}
-			catch (Exception exception)
+			catch (Exception)
 			{
 				this.ReleaseSemaphore();
 				throw;
@@ -175,7 +175,7 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement
 				{
 					num1 = this.Read(num, numArray, 0, num1);
 				}
-				catch (Exception exception)
+				catch (Exception)
 				{
 					lock (this.md5hash)
 					{
@@ -322,12 +322,12 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement
 
 		private void WaitMD5CalculationToFinish()
 		{
-			if (this.finishedSeparateMd5Calculator != null)
+			if (this.finishedSeparateMd5Calculator)
 			{
 				return;
 			}
 			SpinWait spinWait = new SpinWait();
-			while (this.finishedSeparateMd5Calculator == null)
+			while (this.finishedSeparateMd5Calculator == false)
 			{
 				spinWait.SpinOnce();
 			}

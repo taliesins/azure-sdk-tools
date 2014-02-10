@@ -1,4 +1,3 @@
-using Microsoft.WindowsAzure.Storage.DataMovement;
 using System;
 
 namespace Microsoft.WindowsAzure.Storage.DataMovement.CancellationHelpers
@@ -18,7 +17,7 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement.CancellationHelpers
 
 		public void CheckCancellation()
 		{
-			if (this.cancelled != null)
+			if (this.cancelled)
 			{
 				throw new OperationCanceledException(Resources.BlobTransferCancelledException);
 			}

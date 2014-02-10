@@ -439,7 +439,7 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement.TransferControllers
 					}
 				}
 			}
-			catch (System.Exception exception)
+			catch (System.Exception)
 			{
 			}
 		}
@@ -903,7 +903,7 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement.TransferControllers
 			}
 			else
 			{
-				if (this.blob.Properties.BlobType == null)
+				if (this.blob.Properties.BlobType == BlobType.Unspecified)
 				{
 					this.SetErrorState(new InvalidOperationException(Resources.FailedToGetBlobTypeException), callbackState);
 					return;

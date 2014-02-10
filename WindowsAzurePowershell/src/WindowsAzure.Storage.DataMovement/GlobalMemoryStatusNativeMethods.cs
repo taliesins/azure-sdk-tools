@@ -1,12 +1,10 @@
-using System;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAzure.Storage.DataMovement
 {
 	internal class GlobalMemoryStatusNativeMethods
 	{
-		private GlobalMemoryStatusNativeMethods.MEMORYSTATUSEX memStatus;
+		private MEMORYSTATUSEX memStatus;
 
 		public ulong AvailablePhysicalMemory
 		{
@@ -22,17 +20,19 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement
 
 		public GlobalMemoryStatusNativeMethods()
 		{
-			this.memStatus = new GlobalMemoryStatusNativeMethods.MEMORYSTATUSEX();
-			if (GlobalMemoryStatusNativeMethods.GlobalMemoryStatusEx(this.memStatus))
+			this.memStatus = new MEMORYSTATUSEX();
+			if (GlobalMemoryStatusEx(this.memStatus))
 			{
 				this.TotalPhysicalMemory = this.memStatus.ullTotalPhys;
 				this.AvailablePhysicalMemory = this.memStatus.ullAvailPhys;
 			}
 		}
 
+        [return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport("kernel32.dll", CharSet=CharSet.Auto, ExactSpelling=false, SetLastError=true)]
-		private static extern bool GlobalMemoryStatusEx([In][Out] GlobalMemoryStatusNativeMethods.MEMORYSTATUSEX lpBuffer);
+		private static extern bool GlobalMemoryStatusEx([In][Out] MEMORYSTATUSEX lpBuffer);
 
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
 		private class MEMORYSTATUSEX
 		{
 			public uint dwLength;
@@ -55,7 +55,7 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement
 
 			public MEMORYSTATUSEX()
 			{
-				this.dwLength = (uint)Marshal.SizeOf(typeof(GlobalMemoryStatusNativeMethods.MEMORYSTATUSEX));
+				this.dwLength = (uint)Marshal.SizeOf(typeof(MEMORYSTATUSEX));
 			}
 		}
 	}

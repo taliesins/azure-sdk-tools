@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 
 namespace Microsoft.WindowsAzure.Storage.DataMovement
 {
@@ -96,7 +95,7 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement
 			GlobalMemoryStatusNativeMethods globalMemoryStatusNativeMethod = new GlobalMemoryStatusNativeMethods();
 			if ((long)0 != globalMemoryStatusNativeMethod.AvailablePhysicalMemory)
 			{
-				this.MaximumCacheSize = Math.Min((long)((double)((float)globalMemoryStatusNativeMethod.AvailablePhysicalMemory) * 0.5), (long)-2147483648);
+				this.MaximumCacheSize = Math.Min((long)((double)((float)globalMemoryStatusNativeMethod.AvailablePhysicalMemory) * 0.5), (long)int.MaxValue);
 			}
 			else
 			{

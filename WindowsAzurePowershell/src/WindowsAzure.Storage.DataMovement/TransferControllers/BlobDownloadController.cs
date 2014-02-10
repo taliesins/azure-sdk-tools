@@ -668,7 +668,7 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement.TransferControllers
 				this.HandleFetchAttributesException(exception, asyncState);
 				return;
 			}
-			if (this.blob.Properties.BlobType != null)
+			if (this.blob.Properties.BlobType != BlobType.Unspecified)
 			{
 				if (string.IsNullOrEmpty(this.transferEntry.ETag))
 				{
@@ -755,7 +755,7 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement.TransferControllers
 					}
 				}
 			}
-			catch (System.Exception exception)
+			catch (System.Exception)
 			{
 			}
 		}
@@ -1636,7 +1636,7 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement.TransferControllers
 
 			private int refCount;
 
-			private object removeLockObject;
+			private object removeLockObject = new object();
 
 			public byte[] MemoryBuffer
 			{

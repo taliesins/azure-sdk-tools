@@ -358,7 +358,7 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement.TransferControllers
 			{
 				listBlockItems = this.blob.EndDownloadBlockList(asyncResult);
 			}
-			catch (System.Exception exception)
+			catch (System.Exception)
 			{
 			}
 			if (listBlockItems != null)
@@ -440,7 +440,7 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement.TransferControllers
 					}
 				}
 			}
-			catch (System.Exception exception)
+			catch (System.Exception)
 			{
 			}
 		}
@@ -793,7 +793,7 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement.TransferControllers
 			}
 			else if (flag)
 			{
-				if (this.blob.Properties.BlobType == null)
+				if (this.blob.Properties.BlobType == BlobType.Unspecified)
 				{
 					this.SetErrorState(new InvalidOperationException(Resources.FailedToGetBlobTypeException), callbackState);
 					return;

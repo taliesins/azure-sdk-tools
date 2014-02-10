@@ -99,7 +99,7 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement
 			{
 				trace();
 			}
-			catch (Exception exception)
+			catch (Exception)
 			{
 			}
 		}

@@ -275,7 +275,7 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement.TransferControllers
 				this.transferEntry.CopyId = null;
 				this.transferEntry.Status = BlobTransferEntryStatus.Transfer;
 			}
-			if (this.sourceBlob.Properties.BlobType == null)
+            if (this.sourceBlob.Properties.BlobType == BlobType.Unspecified)
 			{
 				this.SetErrorState(new InvalidOperationException(Resources.FailedToGetBlobTypeException), asyncState);
 				return;
@@ -309,7 +309,7 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement.TransferControllers
 					}
 				}
 			}
-			catch (System.Exception exception)
+			catch (System.Exception)
 			{
 			}
 		}
@@ -598,7 +598,7 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement.TransferControllers
 					this.cancellationHandler.CheckCancellation();
 					this.destinationBlob.FetchAttributes(null, blobRequestOption1, operationContext1);
 				}
-				catch (System.Exception exception)
+				catch (System.Exception)
 				{
 					this.SetErrorState(e, callbackState);
 					return;

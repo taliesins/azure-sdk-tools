@@ -129,7 +129,7 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement.RecursiveTransferHelpers
 				{
 					EnumerateDirectoryHelper.CheckPathDiscoveryPermission(str);
 				}
-				catch (SecurityException securityException)
+				catch (SecurityException)
 				{
 					continue;
 				}

@@ -245,7 +245,7 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement.TransferControllers
 						}
 					}
 				}
-				catch (System.Exception exception)
+				catch (System.Exception)
 				{
 				}
 			}

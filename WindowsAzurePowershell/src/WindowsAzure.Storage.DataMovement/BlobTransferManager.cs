@@ -7,7 +7,6 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading;
 
 namespace Microsoft.WindowsAzure.Storage.DataMovement
@@ -192,7 +191,7 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement
 				}
 			}
 			spinWait.Reset();
-			while (this.activeTasks != null)
+			while (this.activeTasks != 0)
 			{
 				spinWait.SpinOnce();
 			}
@@ -222,7 +221,7 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement
 				{
 					this.cancellationTokenRegistration.Dispose();
 				}
-				catch (ObjectDisposedException objectDisposedException)
+				catch (ObjectDisposedException)
 				{
 				}
 				if (this.controllerAddersCountdownEvent != null)
@@ -276,7 +275,9 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement
 				if (work != null)
 				{
 					flag = true;
+#pragma warning disable 420
 					Interlocked.Increment(ref this.activeTasks);
+#pragma warning restore 420
 					try
 					{
 						keyValuePairs[num].Key.PreWork();
@@ -303,11 +304,11 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement
 				{
 					transferController = collection.Take(token);
 				}
-				catch (OperationCanceledException operationCanceledException)
+				catch (OperationCanceledException)
 				{
 					continue;
 				}
-				catch (InvalidOperationException invalidOperationException)
+				catch (InvalidOperationException)
 				{
 					continue;
 				}
@@ -344,7 +345,9 @@ namespace Microsoft.WindowsAzure.Storage.DataMovement
 					disposable.Dispose();
 				}
 			}
+#pragma warning disable 420
 			Interlocked.Decrement(ref this.activeTasks);
+#pragma warning restore 420
 		}
 
 		private void OnGlobalCopySpeed(double globalSpeed)
