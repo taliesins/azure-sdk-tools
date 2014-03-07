@@ -1,6 +1,5 @@
 using Microsoft.WindowsAzure.Storage.DataMovement.TransferControllers;
 using System;
-using System.Runtime.CompilerServices;
 
 namespace Microsoft.WindowsAzure.Storage.DataMovement.TransferStatusHelpers
 {

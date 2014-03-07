@@ -146,10 +146,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.2.0.3\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.WindowsAzure.ServiceManagement.Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\Microsoft.WindowsAzure.ServiceManagement.Client.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.WindowsAzure.Storage, Version=3.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WindowsAzure.Storage.3.0.2.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
@@ -213,7 +209,6 @@
     <Content Include="PIR.psd1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="app.config" />
     <None Include="MSSharedLibKey.snk" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -252,6 +247,10 @@
     <ProjectReference Include="..\ManagementLibraries\ManagementLibraries.csproj">
       <Project>{8ef284cb-843d-42dd-a8a1-f2e0e935e0d5}</Project>
       <Name>ManagementLibraries</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Microsoft.WindowsAzure.ServiceManagement\Microsoft.WindowsAzure.ServiceManagement.Client.csproj">
+      <Project>{4b4f95ad-cedd-44e5-91b5-a2cfc016c7f2}</Project>
+      <Name>Microsoft.WindowsAzure.ServiceManagement.Client</Name>
     </ProjectReference>
     <ProjectReference Include="..\ServiceManagement.Additions\ServiceManagement.Additions.csproj">
       <Project>{da1432af-d6b5-47a1-8b74-ccd740683e0f}</Project>

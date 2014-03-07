@@ -147,10 +147,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.WindowsAzure.ServiceManagement.Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\Microsoft.WindowsAzure.ServiceManagement.Client.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -205,7 +201,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="MSSharedLibKey.snk" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -221,6 +216,10 @@
     <ProjectReference Include="..\ManagementLibraries\ManagementLibraries.csproj">
       <Project>{8ef284cb-843d-42dd-a8a1-f2e0e935e0d5}</Project>
       <Name>ManagementLibraries</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Microsoft.WindowsAzure.ServiceManagement\Microsoft.WindowsAzure.ServiceManagement.Client.csproj">
+      <Project>{4b4f95ad-cedd-44e5-91b5-a2cfc016c7f2}</Project>
+      <Name>Microsoft.WindowsAzure.ServiceManagement.Client</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

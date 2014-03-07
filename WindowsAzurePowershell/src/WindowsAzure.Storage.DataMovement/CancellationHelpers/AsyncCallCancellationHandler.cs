@@ -1,5 +1,3 @@
-using Microsoft.WindowsAzure.Storage;
-using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 

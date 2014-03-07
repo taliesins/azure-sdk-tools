@@ -1,5 +1,3 @@
-using System;
-
 namespace Microsoft.WindowsAzure.Storage.DataMovement
 {
 	public enum BlobRequestOperation

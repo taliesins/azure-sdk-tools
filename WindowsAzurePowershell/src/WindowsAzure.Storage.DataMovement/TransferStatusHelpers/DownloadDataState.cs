@@ -1,8 +1,3 @@
-using Microsoft.WindowsAzure.Storage;
-using System;
-using System.IO;
-using System.Runtime.CompilerServices;
-
 namespace Microsoft.WindowsAzure.Storage.DataMovement.TransferStatusHelpers
 {
 	internal class DownloadDataState : TransferDataState

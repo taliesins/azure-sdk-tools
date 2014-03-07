@@ -70,6 +70,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.WindowsAzure.Stor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.WindowsAzure.Storage.DataMovement.Tests", "Microsoft.WindowsAzure.Storage.DataMovement.Tests\Microsoft.WindowsAzure.Storage.DataMovement.Tests.csproj", "{DDA9F7FE-B1A1-40C8-A62D-AE8BBC2FE82D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.WindowsAzure.ServiceManagement.Client", "Microsoft.WindowsAzure.ServiceManagement\Microsoft.WindowsAzure.ServiceManagement.Client.csproj", "{4B4F95AD-CEDD-44E5-91B5-A2CFC016C7F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -374,6 +376,15 @@ Global
 		{DDA9F7FE-B1A1-40C8-A62D-AE8BBC2FE82D}.ReleaseSigned|Any CPU.ActiveCfg = Release|Any CPU
 		{DDA9F7FE-B1A1-40C8-A62D-AE8BBC2FE82D}.ReleaseSigned|Any CPU.Build.0 = Release|Any CPU
 		{DDA9F7FE-B1A1-40C8-A62D-AE8BBC2FE82D}.ReleaseSigned|x64.ActiveCfg = Release|Any CPU
+		{4B4F95AD-CEDD-44E5-91B5-A2CFC016C7F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B4F95AD-CEDD-44E5-91B5-A2CFC016C7F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B4F95AD-CEDD-44E5-91B5-A2CFC016C7F2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4B4F95AD-CEDD-44E5-91B5-A2CFC016C7F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B4F95AD-CEDD-44E5-91B5-A2CFC016C7F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B4F95AD-CEDD-44E5-91B5-A2CFC016C7F2}.Release|x64.ActiveCfg = Release|Any CPU
+		{4B4F95AD-CEDD-44E5-91B5-A2CFC016C7F2}.ReleaseSigned|Any CPU.ActiveCfg = Release|Any CPU
+		{4B4F95AD-CEDD-44E5-91B5-A2CFC016C7F2}.ReleaseSigned|Any CPU.Build.0 = Release|Any CPU
+		{4B4F95AD-CEDD-44E5-91B5-A2CFC016C7F2}.ReleaseSigned|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
