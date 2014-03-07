@@ -30,7 +30,7 @@ namespace Microsoft.WindowsAzure.ServiceManagement
 				{
 					decodedString = StringEncoder.DecodeFromBase64String(encodedString);
 				}
-				catch (Exception exception)
+				catch (Exception)
 				{
 					flag = false;
 				}

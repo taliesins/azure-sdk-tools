@@ -246,7 +246,7 @@ namespace Microsoft.WindowsAzure.ServiceManagement
 							}
 						}
 					}
-					catch (ObjectDisposedException objectDisposedException)
+					catch (ObjectDisposedException)
 					{
 						this._logger.LogError("Could not process body response because the stream has been closed.");
 					}

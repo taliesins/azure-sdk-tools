@@ -222,7 +222,7 @@
       <Project>{8ef284cb-843d-42dd-a8a1-f2e0e935e0d5}</Project>
       <Name>ManagementLibraries</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WindowsAzure.Storage.DataMovement\Microsoft.WindowsAzure.Storage.DataMovement.csproj">
+    <ProjectReference Include="..\Microsoft.WindowsAzure.Storage.DataMovement\Microsoft.WindowsAzure.Storage.DataMovement.csproj">
       <Project>{1eddead9-58c3-4a97-bf62-91fca7910bce}</Project>
       <Name>Microsoft.WindowsAzure.Storage.DataMovement</Name>
     </ProjectReference>

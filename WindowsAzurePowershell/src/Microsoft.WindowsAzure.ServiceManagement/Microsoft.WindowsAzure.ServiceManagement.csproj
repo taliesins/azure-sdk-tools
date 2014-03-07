@@ -1,34 +1,69 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectGuid>{4b4f95ad-cedd-44e5-91b5-a2cfc016c7f2}</ProjectGuid>
+    <ProjectGuid>{4B4F95AD-CEDD-44E5-91B5-A2CFC016C7F2}</ProjectGuid>
     <SchemaVersion>2</SchemaVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <AssemblyName>Microsoft.WindowsAzure.ServiceManagement.Client</AssemblyName>
+    <AssemblyName>Microsoft.WindowsAzure.ServiceManagement</AssemblyName>
     <OutputType>Library</OutputType>
-    <RootNamespace>Microsoft</RootNamespace>
+    <RootNamespace>Microsoft.WindowsAzure.ServiceManagement</RootNamespace>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>bin\Debug\</OutputPath>
     <DebugSymbols>true</DebugSymbols>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <Optimize>false</Optimize>
-    <WarningLevel>4</WarningLevel>
     <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Package\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>bin\Release\</OutputPath>
-    <DebugSymbols>false</DebugSymbols>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <WarningLevel>4</WarningLevel>
     <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Package\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseSigned|AnyCPU'">
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>MSSharedLibKey.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>true</DelaySign>
+    <OutputPath>..\..\..\Package\Release\</OutputPath>
+    <DefineConstants>TRACE;SIGN</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseSigned|x64'">
+    <OutputPath>..\..\..\Package\Release\</OutputPath>
+    <DefineConstants>TRACE;SIGN</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>MSSharedLibKey.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>true</DelaySign>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.ServiceModel" />
@@ -43,667 +78,671 @@
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\RoleSetOperation.cs">
+    <Compile Include="RoleSetOperation.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\UpgradeStatus.cs">
+    <Compile Include="UpgradeStatus.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ArgumentValidator.cs">
+    <Compile Include="ArgumentValidator.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\GuestAgentType.cs">
+    <Compile Include="GuestAgentType.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\Operation.cs">
+    <Compile Include="Operation.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ShutdownRolesOperation.cs">
+    <Compile Include="ShutdownRolesOperation.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\NetworkConfigurationSet.cs">
+    <Compile Include="NetworkConfigurationSet.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\UpdateStorageServiceInput.cs">
+    <Compile Include="UpdateStorageServiceInput.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\RollbackUpdateOrUpgradeInput.cs">
+    <Compile Include="RollbackUpdateOrUpgradeInput.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\InstanceEndpointList.cs">
+    <Compile Include="InstanceEndpointList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\LoadBalancedEndpointList.cs">
+    <Compile Include="LoadBalancedEndpointList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\StartRolesOperation.cs">
+    <Compile Include="StartRolesOperation.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\VirtualNetworkSite.cs">
+    <Compile Include="VirtualNetworkSite.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ExtendedProperty.cs">
+    <Compile Include="ExtendedProperty.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\VirtualNetworkSiteList.cs">
+    <Compile Include="VirtualNetworkSiteList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ExtendedPropertiesList.cs">
+    <Compile Include="ExtendedPropertiesList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\InstanceEndpoint.cs">
+    <Compile Include="InstanceEndpoint.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\DnsServer.cs">
+    <Compile Include="DnsServer.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ReplicationInput.cs">
+    <Compile Include="ReplicationInput.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\DnsServerList.cs">
+    <Compile Include="DnsServerList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\RegionList.cs">
+    <Compile Include="RegionList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ExtensionImageList.cs">
+    <Compile Include="ExtensionImageList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\Extension.cs">
+    <Compile Include="Extension.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ExtensionList.cs">
+    <Compile Include="ExtensionList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\RoleExtensions.cs">
+    <Compile Include="RoleExtensions.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\SwapDeploymentInput.cs">
+    <Compile Include="SwapDeploymentInput.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\DnsSettings.cs">
+    <Compile Include="DnsSettings.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\AllRoles.cs">
+    <Compile Include="AllRoles.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\StorageService.cs">
+    <Compile Include="StorageService.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\NamedRoles.cs">
+    <Compile Include="NamedRoles.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\EndpointList.cs">
+    <Compile Include="EndpointList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ExtensionConfiguration.cs">
+    <Compile Include="ExtensionConfiguration.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\Gateway.cs">
+    <Compile Include="Gateway.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\InputEndpoint.cs">
+    <Compile Include="InputEndpoint.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ExtensionImage.cs">
+    <Compile Include="ExtensionImage.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\EndpointAccessControlList.cs">
+    <Compile Include="EndpointAccessControlList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\LocalNetworkSite.cs">
+    <Compile Include="LocalNetworkSite.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ClientMessageInspector.cs">
+    <Compile Include="ClientMessageInspector.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\Connection.cs">
+    <Compile Include="Connection.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\LocalNetworkSiteList.cs">
+    <Compile Include="LocalNetworkSiteList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\HostedServiceExtension.cs">
+    <Compile Include="HostedServiceExtension.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\AddressPrefixList.cs">
+    <Compile Include="AddressPrefixList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\StorageServiceProperties.cs">
+    <Compile Include="StorageServiceProperties.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ConnectionList.cs">
+    <Compile Include="ConnectionList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\Disk.cs">
+    <Compile Include="Disk.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\DiskList.cs">
+    <Compile Include="DiskList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\IResolvable.cs">
+    <Compile Include="IResolvable.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\IMergable.cs">
+    <Compile Include="IMergable.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\IMergable_T_.cs">
+    <Compile Include="IMergable_T_.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\AccessControlListRule.cs">
+    <Compile Include="AccessControlListRule.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\StorageServiceKeys.cs">
+    <Compile Include="StorageServiceKeys.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\AddressSpace.cs">
+    <Compile Include="AddressSpace.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\Deployment.cs">
+    <Compile Include="Deployment.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\Subnet.cs">
+    <Compile Include="Subnet.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\VirtualIPList.cs">
+    <Compile Include="VirtualIPList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\SubnetList.cs">
+    <Compile Include="SubnetList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\OSImage.cs">
+    <Compile Include="OSImage.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\HostedServiceExtensionInput.cs">
+    <Compile Include="HostedServiceExtensionInput.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\RegenerateKeys.cs">
+    <Compile Include="RegenerateKeys.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\IServiceManagement.cs">
+    <Compile Include="IServiceManagement.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\HostedServiceExtensionList.cs">
+    <Compile Include="HostedServiceExtensionList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\SubscriptionOperationCollection.cs">
+    <Compile Include="SubscriptionOperationCollection.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\OSImageList.cs">
+    <Compile Include="OSImageList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\VirtualIP.cs">
+    <Compile Include="VirtualIP.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\HostedServiceList.cs">
+    <Compile Include="HostedServiceList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\SubscriptionOperationList.cs">
+    <Compile Include="SubscriptionOperationList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\LoadBalancerProbe.cs">
+    <Compile Include="LoadBalancerProbe.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\Mergable_T_.cs">
+    <Compile Include="Mergable_T_.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\RoleReference.cs">
+    <Compile Include="RoleReference.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\OSType.cs">
+    <Compile Include="OSType.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\CertificateSetting.cs">
+    <Compile Include="CertificateSetting.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\EndpointContract.cs">
+    <Compile Include="EndpointContract.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\HostedService.cs">
+    <Compile Include="HostedService.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\EndpointContractList.cs">
+    <Compile Include="EndpointContractList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\DeploymentList.cs">
+    <Compile Include="DeploymentList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ConfigurationSet.cs">
+    <Compile Include="ConfigurationSet.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\CertificateSettingList.cs">
+    <Compile Include="CertificateSettingList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ProvisioningConfigurationSet.cs">
+    <Compile Include="ProvisioningConfigurationSet.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\SubnetNamesCollection.cs">
+    <Compile Include="SubnetNamesCollection.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\SubscriptionOperationCaller.cs">
+    <Compile Include="SubscriptionOperationCaller.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\OSImageDetails.cs">
+    <Compile Include="OSImageDetails.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\OperationParameterList.cs">
+    <Compile Include="OperationParameterList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\GatewaySize.cs">
+    <Compile Include="GatewaySize.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\HostedServiceProperties.cs">
+    <Compile Include="HostedServiceProperties.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\NetworkState.cs">
+    <Compile Include="NetworkState.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\LocationList.cs">
+    <Compile Include="LocationList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\OperatingSystemFamilyList.cs">
+    <Compile Include="OperatingSystemFamilyList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\VirtualIPGroup.cs">
+    <Compile Include="VirtualIPGroup.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ReplicationProgressElement.cs">
+    <Compile Include="ReplicationProgressElement.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ReplicationProgressList.cs">
+    <Compile Include="ReplicationProgressList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\VirtualIPGroups.cs">
+    <Compile Include="VirtualIPGroups.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\Location.cs">
+    <Compile Include="Location.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\DataVirtualHardDisk.cs">
+    <Compile Include="DataVirtualHardDisk.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\AvailableServicesList.cs">
+    <Compile Include="AvailableServicesList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\PersistentVMDowntimeInfo.cs">
+    <Compile Include="PersistentVMDowntimeInfo.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\OSVirtualHardDisk.cs">
+    <Compile Include="OSVirtualHardDisk.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\CreateHostedServiceInput.cs">
+    <Compile Include="CreateHostedServiceInput.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\OperatingSystemFamily.cs">
+    <Compile Include="OperatingSystemFamily.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\RoleList.cs">
+    <Compile Include="RoleList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\OperatingSystemList.cs">
+    <Compile Include="OperatingSystemList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\DeploymentInputEndpointList.cs">
+    <Compile Include="DeploymentInputEndpointList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\RoleOperation.cs">
+    <Compile Include="RoleOperation.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\UpdateHostedServiceInput.cs">
+    <Compile Include="UpdateHostedServiceInput.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\DeploymentInputEndpoint.cs">
+    <Compile Include="DeploymentInputEndpoint.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\WindowsProvisioningConfigurationSet.cs">
+    <Compile Include="WindowsProvisioningConfigurationSet.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ShutdownRoleOperation.cs">
+    <Compile Include="ShutdownRoleOperation.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\PostShutdownAction.cs">
+    <Compile Include="PostShutdownAction.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\RoleInstanceList.cs">
+    <Compile Include="RoleInstanceList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\OperationParameter.cs">
+    <Compile Include="OperationParameter.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\StartRoleOperation.cs">
+    <Compile Include="StartRoleOperation.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\AvailabilityResponse.cs">
+    <Compile Include="AvailabilityResponse.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\StorageServiceList.cs">
+    <Compile Include="StorageServiceList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\RestartRoleOperation.cs">
+    <Compile Include="RestartRoleOperation.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\LinuxProvisioningConfigurationSet.cs">
+    <Compile Include="LinuxProvisioningConfigurationSet.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\StorageDomain.cs">
+    <Compile Include="StorageDomain.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\OperatingSystem.cs">
+    <Compile Include="OperatingSystem.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\Resources.Designer.cs">
-      <AutoGen>true</AutoGen>
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTimeSharedInput>true</DesignTimeSharedInput>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\CaptureRoleOperation.cs">
+    <Compile Include="CaptureRoleOperation.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\PostCaptureAction.cs">
+    <Compile Include="PostCaptureAction.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\CustomDomain.cs">
+    <Compile Include="CustomDomain.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\Role.cs">
+    <Compile Include="Role.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\CustomDomainList.cs">
+    <Compile Include="CustomDomainList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\RoleInstance.cs">
+    <Compile Include="RoleInstance.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ServiceManagementClientException.cs">
+    <Compile Include="ServiceManagementClientException.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\PowerState.cs">
+    <Compile Include="PowerState.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\SubscriptionOperation.cs">
+    <Compile Include="SubscriptionOperation.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\RoleNamesCollection.cs">
+    <Compile Include="RoleNamesCollection.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\CreateStorageServiceInput.cs">
+    <Compile Include="CreateStorageServiceInput.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\RetryPolicy.cs">
+    <Compile Include="RetryPolicy.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\CreateDeploymentInput.cs">
+    <Compile Include="CreateDeploymentInput.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\CreateAffinityGroupInput.cs">
+    <Compile Include="CreateAffinityGroupInput.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\PersistentVMRole.cs">
+    <Compile Include="PersistentVMRole.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ServiceManagementExtensionMethods.cs">
+    <Compile Include="ServiceManagementExtensionMethods.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ChangeConfigurationInput.cs">
+    <Compile Include="ChangeConfigurationInput.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\AffinityGroupList.cs">
+    <Compile Include="AffinityGroupList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\UpdateDeploymentStatusInput.cs">
+    <Compile Include="UpdateDeploymentStatusInput.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ServiceManagementClientOptions.cs">
+    <Compile Include="ServiceManagementClientOptions.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ServiceManagementError.cs">
+    <Compile Include="ServiceManagementError.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\CapabilitiesList.cs">
+    <Compile Include="CapabilitiesList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\UpdateAffinityGroupInput.cs">
+    <Compile Include="UpdateAffinityGroupInput.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ConfigurationWarning.cs">
+    <Compile Include="ConfigurationWarning.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\CertificateList.cs">
+    <Compile Include="CertificateList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\StringEncoder.cs">
+    <Compile Include="StringEncoder.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\Certificate.cs">
+    <Compile Include="Certificate.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\Subscription.cs">
+    <Compile Include="Subscription.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\SubscriptionCertificateList.cs">
+    <Compile Include="SubscriptionCertificateList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ConfigurationWarningsList.cs">
+    <Compile Include="ConfigurationWarningsList.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\AffinityGroup.cs">
+    <Compile Include="AffinityGroup.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\CertificateFile.cs">
+    <Compile Include="CertificateFile.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\TraceSourceHelper.cs">
+    <Compile Include="TraceSourceHelper.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\SubscriptionCertificate.cs">
+    <Compile Include="SubscriptionCertificate.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\Constants.cs">
+    <Compile Include="Constants.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\DeploymentStatus.cs">
+    <Compile Include="DeploymentStatus.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\RoleInstanceStatus.cs">
+    <Compile Include="RoleInstanceStatus.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\OperationState.cs">
+    <Compile Include="OperationState.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\KeyType.cs">
+    <Compile Include="KeyType.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\DeploymentSlotType.cs">
+    <Compile Include="DeploymentSlotType.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\UpgradeType.cs">
+    <Compile Include="UpgradeType.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\CurrentUpgradeDomainState.cs">
+    <Compile Include="CurrentUpgradeDomainState.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\UpgradeDeploymentInput.cs">
+    <Compile Include="UpgradeDeploymentInput.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\WalkUpgradeDomainInput.cs">
+    <Compile Include="WalkUpgradeDomainInput.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ServiceManagementChannelProxy.cs">
+    <Compile Include="ServiceManagementChannelProxy.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ServiceManagementClient.cs">
+    <Compile Include="ServiceManagementClient.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="WindowsAzure.ServiceManagement\ServiceManagementExtensions.cs">
+    <Compile Include="ServiceManagementExtensions.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="WindowsAzure.ServiceManagement\Resources.resx">
+    <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MSSharedLibKey.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
