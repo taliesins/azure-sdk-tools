@@ -25,7 +25,7 @@ namespace Microsoft.WindowsAzure.Commands.ServiceBus
     /// <summary>
     /// Creates new service bus authorization rule.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "AzureSBAuthorizationRule"), OutputType(typeof(ExtendedAuthorizationRule), typeof(List<ExtendedAuthorizationRule>))]
+    [Cmdlet(VerbsCommon.Get, "AzureSBAuthorizationRule", DefaultParameterSetName = "NamespaceSAS"), OutputType(typeof(ExtendedAuthorizationRule), typeof(List<ExtendedAuthorizationRule>))]
     public class GetAzureSBAuthorizationRuleCommand : CmdletWithSubscriptionBase
     {
         public const string EntitySASParameterSet = "EntitySAS";
@@ -34,30 +34,22 @@ namespace Microsoft.WindowsAzure.Commands.ServiceBus
 
         public ServiceBusClientExtensions Client { get; set; }
 
-        [Parameter(Position = 0, Mandatory = false, ParameterSetName = EntitySASParameterSet,
-            ValueFromPipelineByPropertyName = true, HelpMessage = "The rule name")]
-        [Parameter(Position = 0, Mandatory = false, ParameterSetName = NamespaceSASParameterSet,
-            ValueFromPipelineByPropertyName = true, HelpMessage = "The rule name")]
+        [Parameter(Position = 0, Mandatory = false, ParameterSetName = EntitySASParameterSet, ValueFromPipelineByPropertyName = true, HelpMessage = "The rule name")]
+        [Parameter(Position = 0, Mandatory = false, ParameterSetName = NamespaceSASParameterSet, ValueFromPipelineByPropertyName = true, HelpMessage = "The rule name")]
         public string Name { get; set; }
 
-        [Parameter(Position = 1, Mandatory = false, ParameterSetName = EntitySASParameterSet,
-            ValueFromPipelineByPropertyName = true, HelpMessage = "The access permission")]
-        [Parameter(Position = 1, Mandatory = false, ParameterSetName = NamespaceSASParameterSet,
-            ValueFromPipelineByPropertyName = true, HelpMessage = "The access permission")]
+        [Parameter(Position = 1, Mandatory = false, ParameterSetName = EntitySASParameterSet, ValueFromPipelineByPropertyName = true, HelpMessage = "The access permission")]
+        [Parameter(Position = 1, Mandatory = false, ParameterSetName = NamespaceSASParameterSet, ValueFromPipelineByPropertyName = true, HelpMessage = "The access permission")]
         public Microsoft.ServiceBus.Messaging.AccessRights[] Permission { get; set; }
 
-        [Parameter(Position = 2, Mandatory = true, ValueFromPipelineByPropertyName = true,
-        ParameterSetName = EntitySASParameterSet, HelpMessage = "The namespace name")]
-        [Parameter(Position = 2, Mandatory = true, ValueFromPipelineByPropertyName = true,
-        ParameterSetName = NamespaceSASParameterSet, HelpMessage = "The namespace name")]
+        [Parameter(Position = 2, Mandatory = true, ValueFromPipelineByPropertyName = true, ParameterSetName = EntitySASParameterSet, HelpMessage = "The namespace name")]
+        [Parameter(Position = 2, Mandatory = true, ValueFromPipelineByPropertyName = true, ParameterSetName = NamespaceSASParameterSet, HelpMessage = "The namespace name")]
         public string Namespace { get; set; }
 
-        [Parameter(Position = 3, Mandatory = true, ParameterSetName = EntitySASParameterSet,
-            ValueFromPipelineByPropertyName = true, HelpMessage = "The entity name")]
+        [Parameter(Position = 3, Mandatory = false, ParameterSetName = EntitySASParameterSet, ValueFromPipelineByPropertyName = true, HelpMessage = "The entity name")]
         public string EntityName { get; set; }
 
-        [Parameter(Position = 4, Mandatory = true, ParameterSetName = EntitySASParameterSet,
-            ValueFromPipelineByPropertyName = true, HelpMessage = "The entity type")]
+        [Parameter(Position = 4, Mandatory = false, ParameterSetName = EntitySASParameterSet, ValueFromPipelineByPropertyName = true, HelpMessage = "The entity type")]
         public ServiceBusEntityType EntityType { get; set; }
 
         public override void ExecuteCmdlet()
@@ -65,7 +57,8 @@ namespace Microsoft.WindowsAzure.Commands.ServiceBus
             Client = Client ?? new ServiceBusClientExtensions(CurrentSubscription);
             List<ExtendedAuthorizationRule> rules = null;
             List<PSObject> output = new List<PSObject>();
-            AuthorizationRuleFilterOption options = new AuthorizationRuleFilterOption()
+
+            AuthorizationRuleFilterOption options = new AuthorizationRuleFilterOption
             {
                 EntityName = EntityName,
                 EntityType = EntityType,
