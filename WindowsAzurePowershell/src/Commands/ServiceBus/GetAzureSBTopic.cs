@@ -29,7 +29,7 @@ namespace Microsoft.WindowsAzure.Commands.ServiceBus
     {
         internal ServiceBusClientExtensions Client { get; set; }
 
-        [Parameter(Position = 0, Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "The queue name")]
+        [Parameter(Position = 0, Mandatory = false, ValueFromPipelineByPropertyName = true, HelpMessage = "The topic name")]
         public string Name { get; set; }
 
         [Parameter(Position = 1, Mandatory = true, ValueFromPipelineByPropertyName = true, HelpMessage = "The namespace name")]
@@ -44,11 +44,11 @@ namespace Microsoft.WindowsAzure.Commands.ServiceBus
 
             if (string.IsNullOrEmpty(Name))
             {
-                WriteObject(Client.GetQueue(Namespace), true);
+                WriteObject(Client.GetTopic(Namespace), true);
             }
             else
             {
-                WriteObject(Client.GetQueue(Namespace, Name));
+                WriteObject(Client.GetTopic(Namespace, Name));
             }
         }
     }

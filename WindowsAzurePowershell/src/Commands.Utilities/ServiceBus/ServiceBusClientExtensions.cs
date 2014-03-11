@@ -285,7 +285,6 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.ServiceBus
         /// Creates new instance from ServiceBusClientExtensions
         /// </summary>
         /// <param name="subscription"></param>
-        /// <param name="logger">The logger action</param>
         public ServiceBusClientExtensions(WindowsAzureSubscription subscription)
         {
             subscriptionId = subscription.SubscriptionId;
@@ -314,7 +313,9 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.ServiceBus
         /// Gets the connection string with the given name for the entity.
         /// </summary>
         /// <param name="namespaceName">The namespace name</param>
+        /// <param name="entityType"></param>
         /// <param name="keyName">The connection string key name</param>
+        /// <param name="entityName"></param>
         /// <returns>The connection string value</returns>
         public virtual string GetConnectionString(
             string namespaceName,
@@ -408,6 +409,7 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.ServiceBus
 
         //    return rule;
         //}
+
 
         /// <summary>
         /// Creates shared access signature authorization for the service bus namespace. This authorization works on
@@ -983,6 +985,18 @@ namespace Microsoft.WindowsAzure.Commands.Utilities.ServiceBus
         {
             var namespaceManager = this.CreateNamespaceManager(namespaceName);
             return namespaceManager.GetNotificationHub(path);
+        }
+
+        public virtual List<TopicDescription> GetTopic(string namespaceName)
+        {
+            var namespaceManager = this.CreateNamespaceManager(namespaceName);
+            return namespaceManager.GetTopics().ToList();
+        }
+
+        public virtual TopicDescription GetTopic(string namespaceName, string path)
+        {
+            var namespaceManager = this.CreateNamespaceManager(namespaceName);
+            return namespaceManager.GetTopic(path);
         }
 
         public virtual bool IsAvailableNamespace(string name)
